@@ -1,0 +1,25 @@
+package:
+  name: open-drawing-example
+  dependencies:
+    - arrays
+    - canvas
+    - colors
+    - effect
+    - foldable-traversable
+    - integers
+    - maybe
+    - numbers
+    - open-drawing
+    - partial
+    - prelude
+    # why spago publish fails unless commented?
+    # $ spago publish -p open-drawing --verbose
+    # $ ~/projects/spago/bin/index.dev.js publish -p open-drawing --verbose
+    #     Your package "open-drawing" is not ready for publishing yet, encountered 1 error:
+    # ✘ Some of the packages you specified as `extra_packages` do not point to the Registry.
+    # To be able to publish a package to the registry, all of its dependencies have to be packages registered on the Registry.
+    # Please replace the following packages with versions that are present in the Registry:- "open-drawing"
+    # - open-drawing
+    # test:
+    #   dependencies: []
+    #   main: Main

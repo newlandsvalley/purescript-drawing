@@ -1,15 +1,23 @@
 {
   "private": true,
   "scripts": {
-    "clean": "rimraf output && rimraf .pulp-cache",
-    "build": "pulp build",
-    "example": "spago -x ./example.dhall bundle-app --main Main --to html/index.js"
+    "clean":                      "rm -rfd output output-es .spago dist",
+    "build":                      "spago build --censor-stats --strict --pedantic-packages --ensure-ranges",
+    "format":                     "purs-tidy format-in-place src test",
+    "check":                      "purs-tidy check src test",
+    "test":                       "spago test",
+    "update-docs":                "spago docs --format markdown",
+    "example-production:build":   "spago build --package open-drawing-example --strict --censor-stats --pedantic-packages && purs-backend-es build && vite build",
+    "example-production:serve":   "serve dist",
+    "example-production:preview": "vite preview --open",
+    "example-dev:vite":           "vite dev --open",
+    "example-dev:spago":          "watchexec -e purs,js,yaml -- spago build",
+    "publish":                    "spago publish -p open-drawing"
   },
+  "browserslist": "defaults, not ie <= 11",
   "devDependencies": {
-    "pulp": "^16.0.2",
-    "purescript": "^0.15.4",
-    "purescript-psa": "^0.6.0",
-    "rimraf": "^2.6.2",
-    "spago": "^0.20.9"
+    "vite": "^5.4.0",
+    "purs-backend-es": "^1.4.2",
+    "js-yaml": "^4.1.0"
   }
 }

@@ -2,11 +2,30 @@
 
 module Graphics.Drawing
   ( Point
-  , Shape, path, closed, rectangle, circle, arc
-  , FillStyle, fillColor
-  , OutlineStyle, outlineColor, lineWidth
-  , Shadow, shadowOffset, shadowBlur, shadowColor, shadow
-  , Drawing, filled, outlined, clipped, scale, translate, rotate, text
+  , Shape
+  , path
+  , closed
+  , rectangle
+  , circle
+  , arc
+  , FillStyle
+  , fillColor
+  , OutlineStyle
+  , outlineColor
+  , lineWidth
+  , Shadow
+  , shadowOffset
+  , shadowBlur
+  , shadowColor
+  , shadow
+  , Drawing
+  , filled
+  , outlined
+  , clipped
+  , scale
+  , translate
+  , rotate
+  , text
   , everywhere
   , render
   , module Color
@@ -40,7 +59,7 @@ data Shape
   | Arc Canvas.Arc
   -- | A composite shape
   | Composite (List Shape)
-  
+
 derive instance eqShape :: Eq Shape
 
 instance semigroupShape :: Semigroup Shape where
@@ -104,21 +123,23 @@ lineWidth :: Number -> OutlineStyle
 lineWidth c = OutlineStyle { color: Nothing, lineWidth: Just c }
 
 instance semigroupOutlineStyle :: Semigroup OutlineStyle where
-  append (OutlineStyle f1) (OutlineStyle f2) = OutlineStyle { color:     f1.color     <|> f2.color
-                                                            , lineWidth: f1.lineWidth <|> f2.lineWidth
-                                                            }
+  append (OutlineStyle f1) (OutlineStyle f2) = OutlineStyle
+    { color: f1.color <|> f2.color
+    , lineWidth: f1.lineWidth <|> f2.lineWidth
+    }
 
 instance monoidOutlineStyle :: Monoid OutlineStyle where
-  mempty = OutlineStyle { color: Nothing
-                        , lineWidth: Nothing
-                        }
+  mempty = OutlineStyle
+    { color: Nothing
+    , lineWidth: Nothing
+    }
 
 derive instance eqOutlineStyle :: Eq OutlineStyle
 
 -- | Encapsulates shadow settings etc.
 newtype Shadow = Shadow
-  { color  :: Maybe Color
-  , blur   :: Maybe Number
+  { color :: Maybe Color
+  , blur :: Maybe Number
   , offset :: Maybe { x :: Number, y :: Number }
   }
 
@@ -137,16 +158,18 @@ shadowOffset :: Number -> Number -> Shadow
 shadowOffset x y = Shadow { color: Nothing, blur: Nothing, offset: Just { x: x, y: y } }
 
 instance semigroupShadow :: Semigroup Shadow where
-  append (Shadow s1) (Shadow s2) = Shadow { color:  s1.color   <|> s2.color
-                                          , blur:   s1.blur    <|> s2.blur
-                                          , offset: s1.offset  <|> s2.offset
-                                          }
+  append (Shadow s1) (Shadow s2) = Shadow
+    { color: s1.color <|> s2.color
+    , blur: s1.blur <|> s2.blur
+    , offset: s1.offset <|> s2.offset
+    }
 
 instance monoidShadow :: Monoid Shadow where
-  mempty = Shadow { color: Nothing
-                  , blur: Nothing
-                  , offset: Nothing
-                  }
+  mempty = Shadow
+    { color: Nothing
+    , blur: Nothing
+    , offset: Nothing
+    }
 
 -- | A vector `Drawing`.
 data Drawing

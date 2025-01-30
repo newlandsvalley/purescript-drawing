@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as yaml from 'js-yaml'
 
 // Read and parse the YAML file
-const spagoYamlFilePath = path.resolve(__dirname, 'lib', 'spago.yaml');
+const spagoYamlFilePath = path.resolve(__dirname, 'spago.yaml');
 const spagoYamlFileContent = fs.readFileSync(spagoYamlFilePath, 'utf8');
 const data = yaml.load(spagoYamlFileContent);
 

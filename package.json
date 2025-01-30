@@ -18,6 +18,7 @@
   "devDependencies": {
     "js-yaml": "^4.1.0",
     "purs-backend-es": "^1.4.3",
+    "purs-tidy": "^0.11.0",
     "vite": "^5.4.0"
   }
 }

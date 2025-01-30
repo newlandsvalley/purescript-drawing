@@ -1,9 +1,23 @@
 -- | This module defines preset fonts, and functions for creating fonts.
 
 module Graphics.Drawing.Font
-  ( Font, font, fontString
-  , FontFamily, serif, sansSerif, monospace, cursive, fantasy, customFont
-  , FontOptions, bold, bolder, light, italic, oblique, smallCaps
+  ( Font
+  , font
+  , fontString
+  , FontFamily
+  , serif
+  , sansSerif
+  , monospace
+  , cursive
+  , fantasy
+  , customFont
+  , FontOptions
+  , bold
+  , bolder
+  , light
+  , italic
+  , oblique
+  , smallCaps
   ) where
 
 import Prelude
@@ -56,15 +70,15 @@ customFont = FontFamily
 
 -- | Encapsulates font options.
 newtype FontOptions = FontOptions
-  { style    :: Maybe String
-  , variant  :: Maybe String
-  , weight   :: Maybe String
+  { style :: Maybe String
+  , variant :: Maybe String
+  , weight :: Maybe String
   }
 
 instance eqFontOptions :: Eq FontOptions where
   eq (FontOptions a) (FontOptions a') = a.style == a'.style
-                                     && a.variant == a'.variant
-                                     && a.weight == a'.weight
+    && a.variant == a'.variant
+    && a.weight == a'.weight
 
 optionsString :: FontOptions -> String
 optionsString (FontOptions opts) = intercalate " "
@@ -99,13 +113,15 @@ smallCaps = FontOptions { style: Nothing, variant: Just "small-caps", weight: No
 
 instance semigroupFontOptions :: Semigroup FontOptions where
   append (FontOptions fo1) (FontOptions fo2) =
-    FontOptions { style:     fo1.style   <|> fo2.style
-                , variant:   fo1.variant <|> fo2.variant
-                , weight:    fo1.weight  <|> fo2.weight
-                }
+    FontOptions
+      { style: fo1.style <|> fo2.style
+      , variant: fo1.variant <|> fo2.variant
+      , weight: fo1.weight <|> fo2.weight
+      }
 
 instance monoidFontOptions :: Monoid FontOptions where
-  mempty = FontOptions { style: Nothing
-                       , variant: Nothing
-                       , weight: Nothing
-                       }
+  mempty = FontOptions
+    { style: Nothing
+    , variant: Nothing
+    , weight: Nothing
+    }

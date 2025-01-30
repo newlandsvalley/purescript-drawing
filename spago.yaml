@@ -6,4 +6,4 @@ workspace:
   #   args:
   #     - build
   packageSet:
-    registry: 60.0.1
+    registry: 62.3.2

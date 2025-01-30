@@ -1,4 +1,5 @@
 .psci*
+.spago*
 bower_components/
 output/
 output-es/
